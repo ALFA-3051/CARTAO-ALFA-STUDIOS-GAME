@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0b0f1a;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* PARTICULAS */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(#22c55e 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.08;
+  animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px,-200px); }
+}
+
+/* AREA */
+.container {
+  perspective: 1200px;
+}
+
+/* CARTÃO */
+.card {
+  width: 360px;
+  height: 210px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.8s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+/* LADOS */
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+/* IMAGEM */
+.bg-img {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1587202372775-e229f172b9d7');
+  background-size: cover;
+  background-position: center;
+}
+
+/* ESCURECER */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+
+/* TEXTURA */
+.texture {
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/hexellence.png");
+  opacity: 0.15;
+}
+
+/* LUZ PASSANDO */
+.light {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4), transparent);
+  animation: lightMove 3s linear infinite;
+}
+
+@keyframes lightMove {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* BORDA NEON */
+.side::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(120deg, #22c55e, transparent, #22c55e);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+/* CONTEÚDO */
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  color: white;
+}
+
+/* TEXTO */
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #22c55e;
+  text-shadow: 0 0 10px #22c55e;
+}
+
+.subtitle {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #cbd5f5;
+}
+
+.list {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.check {
+  color: #22c55e;
+}
+
+.phone {
+  font-size: 14px;
+  color: #22c55e;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* VERSO */
+.back {
+  transform: rotateY(180deg);
+}
+
+.back-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* AJUSTE DO TELEFONE (SUBIDO) */
+.back .phone {
+  margin-top: 5px;
+}
+
+/* QR */
+.qr-box {
+  width: 140px;
+  height: 140px;
+  background: white;
+  border-radius: 10px;
+  transform: skewX(-10deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px #22c55e;
+}
+
+.qr-box img {
+  width: 121px;
+  transform: skewX(10deg);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <!-- FRENTE -->
+    <div class="side front">
+      <div class="bg-img"></div>
+      <div class="overlay"></div>
+      <div class="texture"></div>
+      <div class="light"></div>
+
+      <div class="content">
+        <div class="title">ALFA STUDIOS GAME</div>
+        <div class="subtitle">Assistência Técnica Gamer</div>
+
+        <div class="list">
+          <div><span class="check">✔</span> PC e Notebook</div>
+          <div><span class="check">✔</span> Formatação e Upgrade</div>
+          <div><span class="check">✔</span> Celular e Tablet</div>
+          <div><span class="check">✔</span> Limpeza e Manutenção</div>
+        </div>
+
+        <div class="phone">📞 (22) 99805-4365</div>
+      </div>
+    </div>
+
+    <!-- VERSO -->
+    <div class="side back">
+      <div class="bg-img"></div>
+      <div class="overlay"></div>
+      <div class="texture"></div>
+      <div class="light"></div>
+
+      <div class="back-content content">
+        <div>
+          <div class="list">
+  <div><span class="check">✔</span> Instalação de Programas</div>
+  <div><span class="check">✔</span> Remoção de Vírus</div>
+  <div><span class="check">✔</span> Backup de Dados</div>
+  <div><span class="check">✔</span> Otimização de Sistema</div>
+  <div><span class="check">✔</span> Troca de Tela</div>
+  <div><span class="check">✔</span> Troca de Bateria</div>
+  <div><span class="check">✔</span> Atendimento a Domicílio</div>
+  <div><span class="check">✔</span> Suporte Remoto</div>
+  <div><span class="check">✔</span> Montagem de PC Gamer</div>
+  <div><span class="check">✔</span> Otimização de Sistema</div>
+</div>
+        </div>
+
+        <div class="qr-box">
+          <img src="qr.jpg">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
